@@ -1,0 +1,166 @@
+.navbar {
+    background-color: #007bff;
+}
+
+.navbar-brand {
+    color: #ffffff;
+}
+
+.navbar-brand img {
+    height: 40px;
+}
+
+.nav-link {
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.nav-link:hover, .nav-link:focus {
+    color: #f8f9fa;
+    text-decoration: none;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+}
+
+.navbar-nav .nav-item.dropdown:hover .dropdown-menu {
+    display: block;
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.dropdown-menu {
+    background-color: #007bff;
+    border: none;
+    border-radius: 0.25rem;
+    margin-top: 0.125rem;
+}
+
+.dropdown-item {
+    color: #ffffff;
+}
+
+.dropdown-item:hover, .dropdown-item:focus {
+    background-color: #0056b3;
+    color: #ffffff;
+}
+
+.search-bar input {
+    width: 200px;
+}
+
+.search-bar .btn-outline-primary {
+    border-color: #ffffff;
+    color: #ffffff;
+}
+
+.search-bar .btn-outline-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+.cont-info{
+    background-color: rgb(58, 52, 52);
+    height: 400px;
+    width: 100%;
+    display: flex;
+   
+}
+.bus-img{
+    height: 300px;
+    width: 240px;
+    margin: 30px;
+    border-radius: 10px;
+}
+.incont{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 120px;
+    color: bisque;
+}
+.bok-btn{
+    width: 200px;
+    height: 40px;
+    border-radius: 8px;
+    background-color: rgb(234, 82, 82);
+}
+
+   
+#head1{
+    background-color: rgb(184, 180, 180);
+    width: 130px;
+    border-radius: 5px;
+}
+#head2{
+    background-color: rgb(184, 180, 180);
+    border-radius: 5px;
+    width: 170px;
+}
+.checked {
+    color: gold;
+}
+.red {
+    color: red;
+}
+/* Gallery styles */
+.gallery {
+    width: 100%;
+    max-width: 1400px; /* Match the container width */
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background: #fff;
+    border-radius: 8px;
+    margin-top: 20px; /* Space below the container */
+}
+
+.gallery h2 {
+    margin-bottom: 20px;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+}
+
+.gallery-grid img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.gallery-grid img:hover {
+    transform: scale(1.05);
+}
+
+/* Lightbox styles */
+.lightbox {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.lightbox img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 8px;
+}
+
+.lightbox.active {
+    display: flex;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: #fff;
+    font-size: 2rem;
+    cursor: pointer;
+}

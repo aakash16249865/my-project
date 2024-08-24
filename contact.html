@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contact us for any inquiries or support.">
+    <title>Contact Us</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .contact-section {
+            background-color: #f8f9fa;
+            padding: 50px 0;
+        }
+        .contact-section .container {
+            max-width: 800px;
+        }
+        .contact-section h2 {
+            font-size: 32px;
+            margin-bottom: 30px;
+        }
+        .contact-section .contact-info {
+            margin-bottom: 20px;
+        }
+        .contact-section .contact-info i {
+            font-size: 24px;
+            color: #007bff;
+            margin-right: 10px;
+        }
+        .contact-section .contact-info p {
+            font-size: 18px;
+            margin: 0;
+        }
+        .contact-section .contact-form .form-group {
+            margin-bottom: 15px;
+        }
+        .contact-section .contact-form .btn {
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+        }
+        .contact-section .contact-form .btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body >
+    <section class="contact-section">
+        <div class="container" style="background-image: url(us.jpg);">
+            <h2 class="text-center">Contact Us</h2>
+            <div class="row">
+                <div class="col-md-6 contact-info">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <p>1234 Street Name, City, State, 12345</p>
+                </div>
+                <div class="col-md-6 contact-info">
+                    <i class="fas fa-phone-alt"></i>
+                    <p>9865475659</p>
+                </div>
+                <div class="col-md-6 contact-info">
+                    <i class="fas fa-envelope"></i>
+                    <p>contact@company.com</p>
+                </div>
+                <div class="col-md-6 contact-info">
+                    <i class="fas fa-globe"></i>
+                    <p>www.companywebsite.com</p>
+                </div>
+            </div>
+            <form class="contact-form">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control" id="name" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" placeholder="Your Email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea class="form-control" id="message" rows="4" placeholder="Your Message" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Send Message</button>
+            </form>
+        </div>
+    </section>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+          apiKey: "AIzaSyAiE1g-gq2R2rhvFO4tzBH98DdmkM3DF4c",
+          authDomain: "contact-98804.firebaseapp.com",
+          projectId: "contact-98804",
+          storageBucket: "contact-98804.appspot.com",
+          messagingSenderId: "1099275281332",
+          appId: "1:1099275281332:web:bde867d891bea3eb4208e1"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+      </script>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

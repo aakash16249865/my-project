@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sliding Bootstrap Dropdown</title>
+    <!-- Bootstrap CSS from StackPath CDN -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Custom styles for animated dropdown */
+        .dropdown-menu {
+            display: none; /* Hide dropdown initially */
+            opacity: 0; /* Initial opacity */
+            max-height: 0; /* Initial max-height */
+            overflow: hidden; /* Hide overflowing content */
+            transition: opacity 0.3s ease, max-height 0.3s ease; /* Smooth transition for opacity and max-height */
+        }
+
+        .dropdown-menu.show {
+            display: block; /* Show dropdown */
+            opacity: 1; /* Fully opaque */
+            max-height: 300px; /* Set max-height to a large value to accommodate content */
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Sliding Bootstrap Dropdown</h1>
+        <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" aria-expanded="false">
+                Choose a fruit
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <li><a class="dropdown-item" href="#" data-value="apple">Apple</a></li>
+                <li><a class="dropdown-item" href="#" data-value="banana">Banana</a></li>
+                <li><a class="dropdown-item" href="#" data-value="cherry">Cherry</a></li>
+                <li><a class="dropdown-item" href="#" data-value="date">Date</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and Popper.js from StackPath CDN -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const dropdownToggle = document.getElementById('dropdownMenuButton');
+            const dropdownMenu = document.querySelector('.dropdown-menu');
+            
+            dropdownToggle.addEventListener('click', function() {
+                if (dropdownMenu.classList.contains('show')) {
+                    dropdownMenu.classList.remove('show');
+                } else {
+                    dropdownMenu.classList.add('show');
+                }
+            });
+            
+            // Hide dropdown on outside click
+            document.addEventListener('click', function(event) {
+                if (!dropdownToggle.contains(event.target) && !dropdownMenu.contains(event.target)) {
+                    dropdownMenu.classList.remove('show');
+                }
+            });
+            
+            const dropdownItems = document.querySelectorAll('.dropdown-item');
+            dropdownItems.forEach(item => {
+                item.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    const selectedValue = this.getAttribute('data-value');
+                    alert('You selected: ' + selectedValue);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Book your stay at the best hotels with our easy-to-use booking platform.">
+    <title>Booking</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            padding-top: 50px;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .btn-signin {
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            font-weight: bold;
+        }
+        .btn-signin:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <a class="navbar-brand" href="#">
+            <img src="logo.png" alt="Hotel Booking Logo" style="height: 40px;">
+            BOOK YOUR JOURNEY
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Home</a>
+                </li>
+                <!-- Other navigation items -->
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Booking Form -->
+    <main class="container my-5">
+        <h1>Book Your Stay</h1>
+        <form id="bookingForm">
+            <div class="form-group">
+                <label for="place">Select Place</label>
+                <input type="text" class="form-control" id="place" placeholder="Enter place">
+            </div>
+            <div class="form-group">
+                <label for="state">Select State</label>
+                <input type="text" class="form-control" id="state" placeholder="Enter state">
+            </div>
+            <div class="form-group">
+                <label for="checkin">Check-in Date</label>
+                <input type="date" class="form-control" id="checkin">
+            </div>
+            <div class="form-group">
+                <label for="checkout">Check-out Date</label>
+                <input type="date" class="form-control" id="checkout">
+            </div>
+            <button type="button" class="btn btn-primary" onclick="handleBooking()">Proceed to Sign In</button>
+        </form>
+    </main>
+
+    <!-- Sign In Modal -->
+    <div class="modal fade" id="signInModal" tabindex="-1" role="dialog" aria-labelledby="signInModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="signInModalLabel">Sign In</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="signInForm">
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="text" class="form-control" id="username" placeholder="Enter your username">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" class="form-control" id="password" placeholder="Enter your password">
+                        </div>
+                        <button type="button" class="btn btn-signin" onclick="submitSignIn()">Sign In</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- JavaScript for booking and sign-in functionality -->
+    <script>
+        function handleBooking() {
+            // Validate form data (optional)
+            const place = document.getElementById('place').value;
+            const state = document.getElementById('state').value;
+            const checkin = document.getElementById('checkin').value;
+            const checkout = document.getElementById('checkout').value;
+
+            // Check if form fields are filled (basic validation)
+            if (!place || !state || !checkin || !checkout) {
+                alert('Please fill in all the fields.');
+                return;
+            }
+
+            // Show sign-in modal
+            $('#signInModal').modal('show');
+        }
+
+        function submitSignIn() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // Basic sign-in validation
+            if (!username || !password) {
+                alert('Please enter username and password.');
+                return;
+            }
+
+            // Close the modal and redirect to booking confirmation (simulate sign-in success)
+            $('#signInModal').modal('hide');
+            alert('Sign in successful. Proceeding with booking...');
+            // Redirect or handle successful sign-in here (e.g., redirect to confirmation page)
+            window.location.href = 'booking-confirmation.html';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" type="bus-icon" href="bl.png" style="width: 20px; height: 20px;">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Book your stay at the best hotels with our easy-to-use booking platform.">
+    <title>Book YOUR JOURNEY</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Navbar styles */
+        .navbar {
+            background-color: #007bff;
+        }
+
+        .navbar-brand {
+            color: #ffffff;
+        }
+
+        .navbar-brand img {
+            height: 40px;
+        }
+
+        .nav-link {
+            color: #ffffff;
+            font-weight: bold;
+        }
+
+        .nav-link:hover, .nav-link:focus {
+            color: #f8f9fa;
+            text-decoration: none;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+
+        .navbar-nav .nav-item.dropdown:hover .dropdown-menu {
+            display: block;
+            opacity: 1;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .dropdown-menu {
+            background-color: #007bff;
+            border: none;
+            border-radius: 0.25rem;
+            margin-top: 0.125rem;
+        }
+
+        .dropdown-item {
+            color: #ffffff;
+        }
+
+        .dropdown-item:hover, .dropdown-item:focus {
+            background-color: #0056b3;
+            color: #ffffff;
+        }
+
+        .search-bar input {
+            width: 200px;
+        }
+
+        .search-bar .btn-outline-primary {
+            border-color: #ffffff;
+            color: #ffffff;
+        }
+
+        .search-bar .btn-outline-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+
+        .hotel-card {
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+            width: 100%;
+            max-width: 300px;
+            height: 500px;
+            margin: auto;
+        }
+
+        .hotel-card:hover {
+            transform: scale(1.05);
+        }
+
+        .hotel-image {
+            height: 300px;
+            object-fit: cover;
+            width: 100%;
+        }
+
+        .footer {
+            background-color: #343a40;
+            color: #ffffff;
+            padding: 30px 0;
+        }
+
+        .footer .social-icons a {
+            color: #ffffff;
+            margin: 0 10px;
+            font-size: 20px;
+        }
+
+        .footer .social-icons a:hover {
+            color: #17a2b8;
+        }
+
+        .footer .links a {
+            color: #ffffff;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        .footer .links a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-darkt">
+            <a class="navbar-brand" href="#">
+                <img src="bl.png" alt="Hotel Booking Logo">
+                BOOK YOUR JOURNEY
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <!-- Search Bar -->
+                <form class="form-inline ml-3 search-bar" onsubmit="return searchHotels();">
+                    <input id="searchInput" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+                </form>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                     <!-- New Seaters Dropdown -->
+                     <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Seaters
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="seater1.html">55 SEATERS</a>
+                            <a class="dropdown-item" href="seater2.html">20 SEATERS</a>
+                            <a class="dropdown-item" href="#">Seat 3</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">More Seats</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>
+                   
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container my-5">
+        <div class="row" id="hotelList">
+            <!-- Hotel Card 1 -->
+            <div class="col-md-4 mb-4 hotel-card" data-name="Angel">
+                <div class="card">
+                    <a href="busbook.html">
+                        <img src="download (6).jpeg" class="card-img-top hotel-image" alt="Hotel Angel">
+                        <div class="card-body">
+                            <h5 class="card-title">ANGEL</h5>
+                            <p class="card-text">Experience luxury at its finest with world-class amenities and stunning city views.</p>
+                            <!-- <a href="booking.html?hotel=Grand%20Plaza" class="btn btn-primary">Book Now</a> -->
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <!-- Hotel Card 2 -->
+            <div class="col-md-4 mb-4 hotel-card" data-name="Nayagn">
+                <div class="card">
+                    <a href="busbook.html">
+                        <img src="z (3).jpg" class="card-img-top hotel-image" alt="Hotel Nayagn">
+                        <div class="card-body">
+                            <h5 class="card-title">NAYAGN</h5>
+                            <p class="card-text">Relax by the beach in a serene and elegant environment with premium services.</p>
+                            <!-- <a href="booking.html?hotel=Oceanfront%20Resort" class="btn btn-primary">Book Now</a> -->
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <!-- Hotel Card 3 -->
+            <div class="col-md-4 mb-4 hotel-card" data-name="VIP">
+                <div class="card">
+                    <a href="busbook.html">
+                        <img src="download (8).jpeg" class="card-img-top hotel-image" alt="Hotel VIP">
+                        <div class="card-body">
+                            <h5 class="card-title">VIP</h5>
+                            <p class="card-text">Enjoy breathtaking mountain views and cozy accommodations in a natural setting.</p>
+                            <!-- <a href="booking.html?hotel=Mountain%20Lodge" class="btn btn-primary">Book Now</a> -->
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <!-- Hotel Card 4 -->
+            <div class="col-md-4 mb-4 hotel-card" data-name="Polladhavan">
+                <div class="card">
+                    <a href="busbook.html">
+                        <img src="download (4).jpeg" class="card-img-top hotel-image" alt="Hotel Polladhavan">
+                        <div class="card-body">
+                            <h5 class="card-title">POLLADHAVAN</h5>
+                            <p class="card-text">Discover the city's vibrant atmosphere from our centrally located inn.</p>
+                            <!-- <a href="booking.html?hotel=Cityscape%20Inn" class="btn btn-primary">Book Now</a> -->
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <!-- Hotel Card 5 -->
+            <div class="col-md-4 mb-4 hotel-card" data-name="Hema">
+                <div class="card">
+                    <a href="busbook.html">
+                        <img src="download (5).jpeg" class="card-img-top hotel-image" alt="Hotel Hema">
+                        <div class="card-body">
+                            <h5 class="card-title">HEMA</h5>
+                            <p class="card-text">Escape to the peaceful countryside and enjoy relaxing rural views.</p>
+                            <!-- <a href="booking.html?hotel=Countryside%20Retreat" class="btn btn-primary">Book Now</a> -->
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <!-- Hotel Card 6 -->
+            <div class="col-md-4 mb-4 hotel-card" data-name="Eshika">
+                <div class="card">
+                    <a href="busbook.html">
+                        <img src="download (7).jpeg" class="card-img-top hotel-image" alt="Hotel Eshika">
+                        <div class="card-body">
+                            <h5 class="card-title">ESHIKA</h5>
+                            <p class="card-text">A chic urban retreat offering modern comforts and convenient amenities.</p>
+                            <!-- <a href="booking.html?hotel=Urban%20Oasis" class="btn btn-primary">Book Now</a> -->
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <!-- Hotel Card 2 -->
+            <div class="col-md-4 mb-4 hotel-card" data-name="Nayagn">
+                <div class="card">
+                    <a href="busbook.html">
+                        <img src="z (1).jpg" class="card-img-top hotel-image" alt="Hotel Nayagn">
+                        <div class="card-body">
+                            <h5 class="card-title">HERO</h5>
+                            <p class="card-text">Relax by the beach in a serene and elegant environment with premium services.</p>
+                            <!-- <a href="booking.html?hotel=Oceanfront%20Resort" class="btn btn-primary">Book Now</a> -->
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <!-- Hotel Card 2 -->
+            <div class="col-md-4 mb-4 hotel-card" data-name="Nayagn">
+                <div class="card">
+                    <a href="busbook.html">
+                        <img src="z (10).jpg" class="card-img-top hotel-image" alt="Hotel Nayagn">
+                        <div class="card-body">
+                            <h5 class="card-title">VILLAN</h5>
+                            <p class="card-text">Relax by the beach in a serene and elegant environment with premium services.</p>
+                            <!-- <a href="booking.html?hotel=Oceanfront%20Resort" class="btn btn-primary">Book Now</a> -->
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <!-- Hotel Card 2 -->
+            <div class="col-md-4 mb-4 hotel-card" data-name="Nayagn">
+                <div class="card">
+                    <a href="busbook.html">
+                        <img src="z (11).jpg" class="card-img-top hotel-image" alt="Hotel Nayagn">
+                        <div class="card-body">
+                            <h5 class="card-title">VIKRAM</h5>
+                            <p class="card-text">Relax by the beach in a serene and elegant environment with premium services.</p>
+                            <!-- <a href="booking.html?hotel=Oceanfront%20Resort" class="btn btn-primary">Book Now</a> -->
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <!-- Hotel Card 2 -->
+            <div class="col-md-4 mb-4 hotel-card" data-name="Nayagn">
+                <div class="card">
+                    <a href="busbook.html">
+                        <img src="z (2).jpg" class="card-img-top hotel-image" alt="Hotel Nayagn">
+                        <div class="card-body">
+                            <h5 class="card-title">LEO</h5>
+                            <p class="card-text">Relax by the beach in a serene and elegant environment with premium services.</p>
+                            <!-- <a href="booking.html?hotel=Oceanfront%20Resort" class="btn btn-primary">Book Now</a> -->
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <!-- Hotel Card 2 -->
+            <div class="col-md-4 mb-4 hotel-card" data-name="Nayagn">
+                <div class="card">
+                    <a href="busbook.html">
+                        <img src="z (3).jpg" class="card-img-top hotel-image" alt="Hotel Nayagn">
+                        <div class="card-body">
+                            <h5 class="card-title">KAITHI</h5>
+                            <p class="card-text">Relax by the beach in a serene and elegant environment with premium services.</p>
+                            <!-- <a href="booking.html?hotel=Oceanfront%20Resort" class="btn btn-primary">Book Now</a> -->
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <!-- Hotel Card 2 -->
+            <div class="col-md-4 mb-4 hotel-card" data-name="Nayagn">
+                <div class="card">
+                    <a href="busbook.html">
+                        <img src="z (7).jpg" class="card-img-top hotel-image" alt="Hotel Nayagn">
+                        <div class="card-body">
+                            <h5 class="card-title">NAYAGN</h5>
+                            <p class="card-text">Relax by the beach in a serene and elegant environment with premium services.</p>
+                            <!-- <a href="booking.html?hotel=Oceanfront%20Resort" class="btn btn-primary">Book Now</a> -->
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>About Us</h5>
+                    <p>We offer the best hotel deals and a wide range of options to suit every traveler's needs. Enjoy a seamless booking experience with us.</p>
+                </div>
+                <div class="col-md-6">
+                    <h5>Quick Links</h5>
+                    <div class="links">
+                        <a href="#">Privacy Policy</a> |
+                        <a href="#">Terms of Service</a> |
+                        <a href="#">FAQ</a>
+                    </div>
+                    <div class="social-icons mt-3">
+                        <a href="#" class="fab fa-facebook-f" aria-label="Facebook" target="_blank"></a>
+                        <a href="#" class="fab fa-twitter" aria-label="Twitter" target="_blank"></a>
+                        <a href="#" class="fab fa-instagram" aria-label="Instagram" target="_blank"></a>
+                        <a href="#" class="fab fa-linkedin-in" aria-label="LinkedIn" target="_blank"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- JavaScript for search functionality -->
+    <script>
+        function searchHotels() {
+            // Get the search query
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            // Get all hotel cards
+            const cards = document.querySelectorAll('.hotel-card');
+            
+            cards.forEach(card => {
+                // Get the name of the hotel from the data attribute
+                const name = card.getAttribute('data-name').toLowerCase();
+                
+                // Show or hide the card based on the search query
+                if (name.includes(query)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+            
+            // Prevent form submission (for demonstration)
+            return false;
+        }
+    </script>
+</body>
+</html>

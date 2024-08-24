@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" type="bus-icon" href="bl.png" style="width: 20px; height: 20px;">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="busbook.css">
+    <style>
+        .checked {
+            color: gold;
+        }
+        .red {
+            color: red;
+        }
+        .carousel-item img {
+            width: 100%;
+            height: auto;
+        }
+        .card {
+            border: none;
+        }
+        .card img {
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-info">
+            <a class="navbar-brand" href="#">
+                <img src="bl.png" alt="Hotel Booking Logo">
+                BOOK YOUR JOURNEY
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <!-- Search Bar -->
+                <form class="form-inline ml-3 search-bar" onsubmit="return searchHotels();">
+                    <input id="searchInput" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+                </form>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <!-- New Seaters Dropdown -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Seaters
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="seater1.html">55 SEATERS</a>
+                            <a class="dropdown-item" href="seater2.html">20 SEATERS</a>
+                            <a class="dropdown-item" href="#">Seat 3</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">More Seats</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <hr>
+    <div class="cont-info">
+        <div>
+            <img src="download (4).jpeg" class="bus-img" alt="bus">
+        </div>
+        <div>
+            <h1 class="incont">ANGEL</h1>
+            <h5 id="head1">AC / Non AC</h5>
+            <h2 style="color: bisque;">Rating</h2>
+            <span class="fa fa-star fa-1x checked" id="e1" onclick="clicked(1)"></span>
+            <span class="fa fa-star fa-1x checked" onclick="clicked(2)"></span>
+            <span class="fa fa-star fa-1x checked" onclick="clicked(3)"></span>
+            <span class="fa fa-star fa-1x checked" onclick="clicked(4)"></span>
+            <span class="fa fa-star fa-1x checked" onclick="clicked(5)"></span><br>
+            <br>
+           <a href="booking.html"> <button class="bok-btn">Book Tickets</button></a>
+        </div>
+        <div>
+            <h3 style="color: bisque;">Driver Details:</h3>
+            <h2 style="color: azure;">AAKASH</h2>
+            <h2 style="color: azure;">VILLUPURAM</h2>
+            <h2 style="color: azure;">976539087</h2>
+        </div>
+    </div>
+
+    <!-- Gallery Section -->
+    <div class="gallery">
+        <h2>Photo Gallery</h2>
+        <div class="gallery-grid">
+            <img src="n (2).JPG" alt="Image of a bus stop" onclick="openLightbox(this.src)" loading="lazy">
+            <img src="n (1).JPG" alt="Image of a scenic bus route" onclick="openLightbox(this.src)" loading="lazy">
+            <img src="n (3).JPG" alt="Image of a modern bus" onclick="openLightbox(this.src)" loading="lazy">
+            <img src="n (4).JPG" alt="Image of a bus in the city" onclick="openLightbox(this.src)" loading="lazy">
+            <img src="n (5).JPG" alt="Image of a countryside bus" onclick="openLightbox(this.src)" loading="lazy">
+            <img src="n (2).JPG" alt="Image of a bus station" onclick="openLightbox(this.src)" loading="lazy">
+        </div>
+    </div>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox" role="dialog" aria-labelledby="lightbox-img" aria-hidden="true">
+        <span class="lightbox-close" onclick="closeLightbox()" aria-label="Close lightbox">&times;</span>
+        <img id="lightbox-img" src="" alt="Lightbox Image">
+    </div>
+
+    <script>
+        function openLightbox(src) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            lightboxImg.src = src;
+            lightbox.classList.add('active');
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('active');
+        }
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeLightbox();
+            }
+        });
+   
+        function clicked(starIndex) {
+            const stars = document.querySelectorAll('.fa-star');
+            stars.forEach((star, index) => {
+                if (index < starIndex) {
+                    star.classList.add('red');
+                } else {
+                    star.classList.remove('red');
+                }
+            });
+        }
+    </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

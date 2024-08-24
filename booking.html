@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Page</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #ff7e5f, #feb47b); /* Gradient background */
+            color: #333;
+            overflow: hidden; /* Hide overflow for canvas effects */
+        }
+        .container {
+            max-width: 600px;
+            margin: 40px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative; /* For positioning child elements */
+            z-index: 1; /* Ensure the container is above the canvas */
+        }
+        .container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        h1 {
+            text-align: center;
+            color: #fff;
+            margin-bottom: 20px;
+            font-size: 2em;
+            font-weight: bold;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            font-size: 1.1em;
+            color: #ff7e5f;
+        }
+        .form-group select, .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ff7e5f;
+            border-radius: 8px;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease;
+        }
+        .form-group select:focus, .form-group input:focus {
+            border-color: #feb47b;
+            outline: none;
+        }
+        .form-group button {
+            padding: 12px 20px;
+            background-color: #ff7e5f;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            font-size: 1.1em;
+        }
+        .form-group button:hover {
+            background-color: #feb47b;
+            transform: scale(1.05);
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #ff7e5f;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        .result.visible {
+            opacity: 1;
+        }
+        .book-now {
+            display: none;
+            margin-top: 20px;
+            text-align: center;
+        }
+        .book-now button {
+            padding: 12px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            font-size: 1.1em;
+        }
+        .book-now button:hover {
+            background-color: #218838;
+            transform: scale(1.05);
+        }
+        /* Sign-In Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.5);
+        }
+        .modal-content {
+            background-color: #fff;
+            margin: 10% auto;
+            padding: 20px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 400px;
+            position: relative;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+        .modal-close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .modal-close:hover,
+        .modal-close:focus {
+            color: black;
+            text-decoration: none;
+        }
+        .modal-header {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #ff7e5f;
+        }
+        .modal-header h2 {
+            font-size: 1.5em;
+        }
+        .modal-body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .modal-body input {
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 2px solid #ff7e5f;
+            border-radius: 8px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .modal-footer {
+            text-align: center;
+        }
+        /* Canvas Styling */
+        .canvas-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none; /* Allows interaction with elements below the canvas */
+            z-index: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="canvas" class="canvas-overlay"></canvas>
+
+    <div class="container">
+        <h1>Booking Page</h1>
+        <div class="form-group">
+            <label for="place">Select Place:</label>
+            <select id="place">
+                <option value="Place1">Place 1</option>
+                <option value="Place2">Place 2</option>
+                <option value="Place3">Place 3</option>
+                <!-- Add more places as needed -->
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="state">Select State:</label>
+            <select id="state">
+                <option value="State1">State 1</option>
+                <option value="State2">State 2</option>
+                <option value="State3">State 3</option>
+                <!-- Add more states as needed -->
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="district">Select District:</label>
+            <select id="district">
+                <option value="District1">District 1</option>
+                <option value="District2">District 2</option>
+                <option value="District3">District 3</option>
+                <!-- Add more districts as needed -->
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="start-date">Start Date:</label>
+            <input type="date" id="start-date" onchange="calculateTotal()">
+        </div>
+        
+        <div class="form-group">
+            <label for="end-date">End Date:</label>
+            <input type="date" id="end-date" onchange="calculateTotal()">
+        </div>
+        
+        <div class="result" id="result">
+            <!-- Total amount will be displayed here -->
+        </div>
+        
+        <div class="book-now" id="book-now">
+            <button onclick="openSignInModal()">Book Now</button>
+        </div>
+    </div>
+
+    <!-- Sign-In Modal -->
+    <div class="modal" id="sign-in-modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeSignInModal()">&times;</span>
+            <div class="modal-header">
+                <h2>Sign In</h2>
+            </div>
+            <div class="modal-body">
+                <form id="sign-in-form">
+                    <div class="form-group">
+                        <label for="username">Username:</label>
+                        <input type="text" id="username" name="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button onclick="signIn()">Sign In</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Canvas Animation
+        function createCanvasBackground() {
+            const canvas = document.getElementById('canvas');
+            const ctx = canvas.getContext('2d');
+            const width = canvas.width = window.innerWidth;
+            const height = canvas.height = window.innerHeight;
+
+            function drawBackground() {
+                const gradient = ctx.createLinearGradient(0, 0, width, height);
+                gradient.addColorStop(0, 'rgba(255, 126, 95, 0.5)');
+                gradient.addColorStop(1, 'rgba(254, 180, 123, 0.5)');
+                ctx.fillStyle = gradient;
+                ctx.fillRect(0, 0, width, height);
+
+                // Draw random circles
+                for (let i = 0; i < 50; i++) {
+                    const x = Math.random() * width;
+                    const y = Math.random() * height;
+                    const radius = Math.random() * 50;
+                    ctx.beginPath();
+                    ctx.arc(x, y, radius, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(255, 255, 255, ${Math.random() * 0.3})`;
+                    ctx.fill();
+                }
+            }
+
+            drawBackground();
+            window.addEventListener('resize', () => {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+                drawBackground();
+            });
+        }
+
+        createCanvasBackground();
+
+        function calculateTotal() {
+            const ratePerDay = 7000;
+            const startDate = new Date(document.getElementById('start-date').value);
+            const endDate = new Date(document.getElementById('end-date').value);
+
+            if (isNaN(startDate) || isNaN(endDate) || startDate > endDate) {
+                document.getElementById('result').innerText = 'Please select valid dates.';
+                document.getElementById('result').classList.add('visible');
+                document.getElementById('book-now').style.display = 'none'; // Hide "Book Now" button if dates are invalid
+                return;
+            }
+
+            const diffTime = Math.abs(endDate - startDate);
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1; // Add 1 to include end date
+
+            const totalAmount = diffDays * ratePerDay;
+            document.getElementById('result').innerText = `Total Amount: ₹${totalAmount}`;
+            document.getElementById('result').classList.add('visible');
+            document.getElementById('book-now').style.display = 'block'; // Show "Book Now" button
+        }
+
+        function openSignInModal() {
+            document.getElementById('sign-in-modal').style.display = 'block';
+        }
+
+        function closeSignInModal() {
+            document.getElementById('sign-in-modal').style.display = 'none';
+        }
+
+        function signIn() {
+            // Simulate sign-in process
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            if (username && password) {
+                closeSignInModal();
+                // Proceed with payment processing here
+                alert('Sign-In successful. Proceeding with payment.');
+                bookNow(); // Call bookNow() after successful sign-in
+            } else {
+                alert('Please enter both username and password.');
+            }
+        }
+        
+
+        function bookNow() {
+            // Here you can add the booking logic, such as redirecting to a booking confirmation page
+            // For now, it will just show an alert
+            alert('Booking has been confirmed!');
+        }
+    </script>
+
+</body>
+</html>
